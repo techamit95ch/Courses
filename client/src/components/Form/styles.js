@@ -25,9 +25,7 @@ export default makeStyles((theme) => ({
   },
   page: {
     zIndex: theme.zIndex.drawer + 1,
-    // flexGrow: 1,
-    // paddingLeft: theme.spacing(4),
-    // margin: 'auto',
+    
     marginLeft: 60,
     flex: 'space-between',
     transition: theme.transitions.create(["width", "margin"], {

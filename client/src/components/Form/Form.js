@@ -21,7 +21,7 @@ const Form = ({ currentId, setCurrentId, open }) => {
     selectedFile: "",
   });
   const post = useSelector((state) =>
-    currentId ? state.posts.find((message) => message._id === currentId) : null
+    currentId ? state.posts.find((message) => message._id === currentId) : history.push('/Add')
   );
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -48,13 +48,13 @@ const Form = ({ currentId, setCurrentId, open }) => {
     e.preventDefault();
 
     for (const [key, value] of Object.entries(postData)) {
-      if (value != "") {
+      if (value !== "") {
         setI(i - 1);
       } else {
         setAlertText(`${key} value is needed`);
       }
     }
-    if (i == 0) {
+    if (i === 0) {
       // console.log(i);
       setAlert2(false);
       if (alert === false) {
@@ -82,8 +82,9 @@ const Form = ({ currentId, setCurrentId, open }) => {
         className={   open === true ? classes.pageShift : classes.page
         }
       >
-        <Grid item xs>
-        {currentId!=0 || currentId? (
+      <div className={classes.root}>
+      <Grid container spacing={3}>
+        {currentId!==0 || currentId? (
           <Grid item xs={7}>
         <Paper className={classes.paper}>
           <Post post={post} edit={true}/></Paper>
@@ -91,7 +92,7 @@ const Form = ({ currentId, setCurrentId, open }) => {
         ):('')}
         
 
-        <Grid item xs={currentId!=0 || currentId? 5:4} >
+        <Grid item xs={currentId!==0 || currentId? 5:4} >
           <Paper className={classes.paper}>
             <form
               autoComplete="off"
@@ -208,7 +209,7 @@ const Form = ({ currentId, setCurrentId, open }) => {
           </Paper>
         </Grid>
         </Grid>
-        
+        </div>
         
       </div>
     </>
