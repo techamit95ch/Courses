@@ -6,25 +6,36 @@ import Post from "./Post/Post";
 import useStyles from "./styles";
 
 
-const Posts = ({ setCurrentId }) => {
+const Posts = ({ setCurrentId,open }) => {
   const posts = useSelector((state) => state.posts);
   const classes = useStyles();
 
   return !posts.length ? (
-    <>
-      <Grid item xs={12} sm={6}></Grid>{" "}
-      <Grid item xs={12} sm={1}>
+    <Grid item xs={12} sm={12} className={
+      //   clsx(classes.page, {[classes.pageShift]: open,})
+      open===true? classes.pageShift: classes.page
+  }>
+    <Grid item xs={6} sm={6}>        
+      </Grid>
+      <Grid item xs={1} sm={1}>
         {" "}
         <CircularProgress />{" "}
       </Grid>
-      <Grid item xs={12} sm={5}></Grid>{" "}
-    </>
+      <Grid item xs={5} sm={5}>
+        
+      </Grid>
+     
+    </Grid>
   ) : (
+    <div className={
+      //   clsx(classes.page, {[classes.pageShift]: open,})
+      open===true? classes.pageShift: classes.page
+  }>
     <Grid
       className={classes.container}
       container
       alignItems="stretch"
-      spacing={3}
+      spacing={4}
     >
       
       <Grid item xs={12} sm={10}>
@@ -37,6 +48,7 @@ const Posts = ({ setCurrentId }) => {
       </Grid>
       
     </Grid>
+    </div>
   );
 };
 

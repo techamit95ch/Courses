@@ -27,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   appBarShift: {
+    backgroundColor: "#24292e",
+    color:"aliceblue",
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(["width", "margin"], {
@@ -112,9 +114,10 @@ export default function TopBar({open, setOpen }) {
   };
   return (
     <div className={classes.root}>
-      <AppBar className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}>
+      <AppBar className={
+        //   clsx(classes.appBar, {[classes.appBarShift]: open,})
+        open===true? classes.appBarShift: classes.appBar
+        }>
         <Toolbar>
         <IconButton
             color="inherit"

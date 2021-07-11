@@ -21,6 +21,7 @@ import LibraryAddRoundedIcon from "@material-ui/icons/LibraryAddRounded";
 import ViewListRoundedIcon from "@material-ui/icons/ViewListRounded";
 import TopBar from "../topBar/TopBar";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom"; // version 5.2.0
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -49,6 +50,10 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    [theme.breakpoints.up('sm')]: {
+        width: drawerWidth,
+        flexShrink: 0,
+      },
   },
   drawerClose: {
     transition: theme.transitions.create("width", {
@@ -73,25 +78,23 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  
 }));
 
-export default function SideBar({
-  
-  Page,
-  currentId,
-  setCurrentId,
-}) {
+export default function SideBar({ Page, currentId, setCurrentId }) {
+  const history = useHistory();
+
   const classes = useStyles();
   const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
-    const handleDrawerOpen = () => {
-      setOpen(true);
-    };
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
 
-    const handleDrawerClose = () => {
-      setOpen(false);
-    };
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
 
   return (
     <>
@@ -122,20 +125,21 @@ export default function SideBar({
         <Divider />
         <List>
           {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => ( */}
-          <ListItem button key={"Add Course"}>
-            <Link to={`/Add`}>
+          <ListItem button key={"Add Course"}
+          onClick={()=>{
+            setCurrentId(0);
+            history.push(`\Add`);
+          }}
+          >
+            
               {" "}
               <ListItemIcon>
                 {" "}
                 <LibraryAddRoundedIcon />
               </ListItemIcon>
-            </Link>
-            <Link
-              to={`/Add`}
-              style={{ color: "#343a40", textDecoration: "inherit" }}
-            >
+
               <ListItemText primary={"Add Course"} />
-            </Link>
+            
           </ListItem>
           {/* ))} */}
         </List>
@@ -160,7 +164,12 @@ export default function SideBar({
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Page currentId={currentId} setCurrentId={setCurrentId} />
+        <Typography paragraph>
+          <Page currentId={currentId} setCurrentId={setCurrentId} open={open} className={
+            //   clsx(classes.page, {[classes.pageShift]: open,})
+            open===true? classes.pageShift: classes.page
+        } />
+        </Typography>
       </main>
     </>
   );

@@ -32,7 +32,7 @@ const App = () => {
     <Router className={classes.root}>
       <Grow in>
         <Container>
-          <Grid container justify="space-between" spacing={3}>
+          {/* <Grid container justify="space-between" spacing={3}> */}
             <Switch>
               <Route exact path="/Add">
                 <SideBar
@@ -48,9 +48,16 @@ const App = () => {
                   setCurrentId={setCurrentId}
                 />
               </Route>
+              <Route exact path="/Edit">
+                <SideBar
+                  Page={Form}
+                  currentId={currentId}
+                  setCurrentId={setCurrentId}
+                />
+              </Route>
               <Route></Route>
             </Switch>
-          </Grid>
+          {/* </Grid> */}
         </Container>
       </Grow>
     </Router>
