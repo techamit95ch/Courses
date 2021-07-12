@@ -49,4 +49,4 @@ With All of this it contains also backend
 Setup:
 - run ```npm i && npm start``` for both client and server side to start the app # Courses
 
-For more Details visit (https://github.com/techamit95ch/Courses/edit/main/README.md)
+For more Details visit (https://github.com/techamit95ch/Courses#readme)
