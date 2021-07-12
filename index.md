@@ -8,30 +8,42 @@ You can go to the (https://github.com/techamit95ch/Courses) to view contents for
 There Are 3 impotant links in the project
 
 ```markdown
-Syntax highlighted code block
+Main Fetaures 
 
 # Add
 ## Edit
 ### Search
+#### Like
+##### Delete
+
 
 - Add : For add Courses
 - Edit : For Edit a Courses
 - Search : For Search a Courses
+- Like : For Like a Courses
+- Delete : For Delete a Courses
 
-1. Numbered
-2. List
+Other Impotant Feature like
 
-**Bold** and _Italic_ and `Code` text
+1. View All course 
+2. View Indiual Course And Live Editing
 
-[Link](url) and ![Image](src)
+**Card View** and All Courses and `indesxed` Link
+**Single View** and Single Courses and `Edit` Link `here Indivial course details are shown. And They Can Be Edited`
+
+Other Impotant Featured Components with this project:
+  1: Responsive Mini Drawer Navigation
+  2. Responsive App Bar Navigation
+  3. Search Bar Navigation
+
+[Add](/Add) For adding Course
+[View All](/) For View All Course
+[Edit](/Edit) For Edit a Course wit Live View Changes
+[Search](/Search) For Search a Course
+
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
+With All of this it contains also backend
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/techamit95ch/Courses/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+For more Details visit (https://github.com/techamit95ch/Courses/edit/main/README.md)
