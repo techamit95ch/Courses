@@ -49,7 +49,7 @@ const Form = ({ currentId, setCurrentId, open }) => {
   }, [post]);
 
   const [alert, setAlert] = React.useState(false);
-  const [alert2, setAlert2] = React.useState(false);
+  const [alert2, setAlert2] = React.useState(true);
   const [alertText, setAlertText] = React.useState("");
   const [i, setI] = React.useState(4);
   const handleSubmit = async (e) => {
@@ -62,34 +62,33 @@ const Form = ({ currentId, setCurrentId, open }) => {
     //     setAlertText(`${key} value is needed`);
     //   }
     // }
-    if (postData.creator === "") {
-      setAlert2(true);
-      setAlertText(` Creator  is needed`);
-    } else if (postData.title === "") {
-      setAlert2(true);
-      setAlertText(` Course title  is needed`);
-    } else if (postData.message === "") {
-      setAlert2(true);
-      setAlertText(` Course Details  is needed`);
-    } else if (postData.selectedFile === "") {
-      setAlert2(true);
-      setAlertText(` Course Banner image  is needed`);
-    } else {
-      setAlert2(false);
-    }
-    if (alert2 === false) {
-      setAlert2(false);
-      if (alert === false) {
-        if (currentId === null) {
-          dispatch(createPost(postData));
-          history.push("/");
-          clear();
-        } else {
-          dispatch(updatePost(currentId, postData));
-          // clear();
-        }
+    // if (postData.creator === "") {
+    //   setAlert2(true);
+    //   setAlertText(` Creator  is needed`);
+    // } else if (postData.title === "") {
+    //   setAlert2(true);
+    //   setAlertText(` Course title  is needed`);
+    // } else if (postData.message === "") {
+    //   setAlert2(true);
+    //   setAlertText(` Course Details  is needed`);
+    // } else if (postData.selectedFile === "") {
+    //   setAlert2(true);
+    //   setAlertText(` Course Banner image  is needed`);
+    // } else  setAlert2(false);
+
+    // if (alert2 === false) {
+    //   // setAlert2(false);
+    if (alert === false) {
+      if (currentId === null) {
+        dispatch(createPost(postData));
+        history.push("/");
+        clear();
+      } else {
+        dispatch(updatePost(currentId, postData));
+        // clear();
       }
     }
+    // }else setAlert2(true);
 
     // console.log(alert2);
   };
@@ -113,7 +112,7 @@ const Form = ({ currentId, setCurrentId, open }) => {
               <Paper className={classes.paper}>
                 <form
                   autoComplete="off"
-                  noValidate
+                  method="post"
                   className={`${classes.root} ${classes.form}`}
                   onSubmit={handleSubmit}
                 >
@@ -131,6 +130,7 @@ const Form = ({ currentId, setCurrentId, open }) => {
                     name="creator"
                     variant="outlined"
                     label="Creator"
+                    required
                     fullWidth
                     value={postData.creator}
                     onChange={(e) =>
@@ -141,16 +141,19 @@ const Form = ({ currentId, setCurrentId, open }) => {
                     name="title"
                     variant="outlined"
                     label="Course Title"
+                    required
                     fullWidth
                     value={postData.title}
                     onChange={(e) =>
                       setPostData({ ...postData, title: e.target.value })
                     }
+                    required
                   />
                   <TextField
                     name="message"
                     variant="outlined"
                     label="Course Details"
+                    required
                     fullWidth
                     multiline
                     rows={4}
@@ -158,11 +161,13 @@ const Form = ({ currentId, setCurrentId, open }) => {
                     onChange={(e) =>
                       setPostData({ ...postData, message: e.target.value })
                     }
+                    required
                   />
                   <TextField
                     name="tags"
                     variant="outlined"
                     label="Tags (coma separated)"
+                    required
                     fullWidth
                     value={postData.tags}
                     onChange={(e) =>
@@ -171,6 +176,7 @@ const Form = ({ currentId, setCurrentId, open }) => {
                         tags: e.target.value.split(","),
                       })
                     }
+                    required
                   />
                   <div className={classes.fileInput}>
                     <Collapse in={alert}>
@@ -197,6 +203,7 @@ const Form = ({ currentId, setCurrentId, open }) => {
                     <FileBase
                       type="file"
                       multiple={false}
+                      required
                       onDone={(data) => {
                         // console.log(data);
                         if (data.type === "image/jpeg") {
@@ -207,6 +214,7 @@ const Form = ({ currentId, setCurrentId, open }) => {
                           setAlert(false);
                         } else setAlert(true);
                       }}
+                      required
                     />
                   </div>
                   <Button
