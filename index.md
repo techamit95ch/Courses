@@ -48,6 +48,7 @@ Other Impotant Featured Components with this project:
 With All of this it contains also backend
 
 Setup:
-- run ```npm i && npm start``` for both client and server side to start the app # Courses
+- run ```npm i && npm start``` for both client and server side to start the app 
+# Courses
 
 For more Details visit (https://github.com/techamit95ch/Courses#readme)
