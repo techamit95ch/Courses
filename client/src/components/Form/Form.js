@@ -32,11 +32,11 @@ const Form = ({ currentId, setCurrentId, open }) => {
   };
 
   useEffect(() => {
-    if (location.pathname === "/Add" || currentId === 0 || !currentId) {
+    if (location.pathname === "/Add" || currentId===null) {
       clear();
-      console.log("Fuck You");
+      // console.log("Fuck You");
     }
-  }, []);
+  }, [location.pathname]);
 
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -55,42 +55,15 @@ const Form = ({ currentId, setCurrentId, open }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // for (const [key, value] of Object.entries(postData)) {
-    //   if (value == "") {
-    //     setI(i - 1);
-    //   } else {
-    //     setAlertText(`${key} value is needed`);
-    //   }
-    // }
-    // if (postData.creator === "") {
-    //   setAlert2(true);
-    //   setAlertText(` Creator  is needed`);
-    // } else if (postData.title === "") {
-    //   setAlert2(true);
-    //   setAlertText(` Course title  is needed`);
-    // } else if (postData.message === "") {
-    //   setAlert2(true);
-    //   setAlertText(` Course Details  is needed`);
-    // } else if (postData.selectedFile === "") {
-    //   setAlert2(true);
-    //   setAlertText(` Course Banner image  is needed`);
-    // } else  setAlert2(false);
-
-    // if (alert2 === false) {
-    //   // setAlert2(false);
     if (alert === false) {
       if (currentId === null) {
         dispatch(createPost(postData));
         history.push("/");
         clear();
       } else {
-        dispatch(updatePost(currentId, postData));
-        // clear();
+        dispatch(updatePost(currentId, postData));        
       }
-    }
-    // }else setAlert2(true);
-
-    // console.log(alert2);
+    }    
   };
 
   return (
@@ -100,15 +73,22 @@ const Form = ({ currentId, setCurrentId, open }) => {
           <Grid container spacing={3}>
             {currentId !== null ? (
               <Grid item xs={12} sm={7}>
-                <Paper className={classes.paper}>
+                {/* <Paper className={classes.paper}> */}
                   <Post post={post} edit={true} />
-                </Paper>
+                {/* </Paper> */}
               </Grid>
             ) : (
               ""
             )}
+            {
+              currentId===null ?(
+                <Grid item xs={12} sm={3} >                
+              </Grid>
+              ):``
+              
+            }
 
-            <Grid item xs={12} sm={currentId !== 0 || currentId ? 5 : 6}>
+            <Grid item xs={12} sm={currentId ? 5 : 6}>
               <Paper className={classes.paper}>
                 <form
                   autoComplete="off"
@@ -120,11 +100,14 @@ const Form = ({ currentId, setCurrentId, open }) => {
                     {currentId ? `Editing "${post.title}"` : "Add Course"}
                   </Typography>
                   <Typography variant="h6">
-                    <Collapse in={alert2}>
+                    {alertText !== "" ? (
                       <Alert variant="outlined" severity="warning">
                         {alertText}
                       </Alert>
-                    </Collapse>
+                    ) : (
+                      ``
+                    )}
+                    {/* <Collapse in={alert2}></Collapse> */}
                   </Typography>
                   <TextField
                     name="creator"

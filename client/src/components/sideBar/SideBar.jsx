@@ -133,17 +133,18 @@ export default function SideBar({ Page, currentId, setCurrentId }) {
             key={"Add Course"}
             onClick={() => {
               setCurrentId(null);
-              // history.push("/Add");
+              history.push("/Add");
               // location.replace('/Add');
             }}
+            style={{ color: "#343a40", textDecoration: "inherit" }}
           >
             
             <ListItemIcon>
-            <Link to={`/Add`}  style={{ color: "#343a40", textDecoration: "inherit" }}> <LibraryAddRoundedIcon /></Link>
+            <Link to={`#`}  style={{ color: "#343a40", textDecoration: "inherit" }}> <LibraryAddRoundedIcon /></Link>
             </ListItemIcon>
             
 
-            <Link to={`/Add`}  style={{ color: "#343a40", textDecoration: "inherit" }}>
+            <Link to={`#`}  style={{ color: "#343a40", textDecoration: "inherit" }}>
             <ListItemText primary={"Add Course"} />
             </Link>
           </ListItem>

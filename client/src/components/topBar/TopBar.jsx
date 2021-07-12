@@ -107,17 +107,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// import React from 'react'
-
-// function topBar() {
-//     return (
-//         <div>
-
-//         </div>
-//     )
-// }
-
-// export default topBar
 
 export default function TopBar({ open, setOpen }) {
   const classes = useStyles();
