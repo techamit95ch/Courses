@@ -34,8 +34,7 @@ const Form = ({ currentId, setCurrentId, open }) => {
   useEffect(() => {
     if (location.pathname === "/Add" || currentId===null) {
       clear();
-      // console.log("Fuck You");
-    }
+      }
   }, [location.pathname]);
 
   const dispatch = useDispatch();

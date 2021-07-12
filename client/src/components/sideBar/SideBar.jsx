@@ -81,13 +81,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SideBar({ Page, currentId, setCurrentId }) {
+export default function SideBar({
+  Page,
+  currentId,
+  setCurrentId,
+  
+}) {
   const history = useHistory();
+  
 
+  
   const classes = useStyles();
   const theme = useTheme();
+  const [searchText, setSearchText] = React.useState("");
   const [open, setOpen] = React.useState(false);
+  
+  
 
+  React.useEffect(() => {  
+  }, [searchText]);
+  // console.log(searchText);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -99,7 +112,7 @@ export default function SideBar({ Page, currentId, setCurrentId }) {
   return (
     <>
       <CssBaseline />
-      <TopBar open={open} setOpen={setOpen} />
+      <TopBar open={open} setOpen={setOpen} setSearchText={setSearchText}  searchText={searchText}/>
       <Drawer
         variant="permanent"
         className={clsx(classes.drawer, {
@@ -138,14 +151,21 @@ export default function SideBar({ Page, currentId, setCurrentId }) {
             }}
             style={{ color: "#343a40", textDecoration: "inherit" }}
           >
-            
             <ListItemIcon>
-            <Link to={`#`}  style={{ color: "#343a40", textDecoration: "inherit" }}> <LibraryAddRoundedIcon /></Link>
+              <Link
+                to={`#`}
+                style={{ color: "#343a40", textDecoration: "inherit" }}
+              >
+                {" "}
+                <LibraryAddRoundedIcon />
+              </Link>
             </ListItemIcon>
-            
 
-            <Link to={`#`}  style={{ color: "#343a40", textDecoration: "inherit" }}>
-            <ListItemText primary={"Add Course"} />
+            <Link
+              to={`#`}
+              style={{ color: "#343a40", textDecoration: "inherit" }}
+            >
+              <ListItemText primary={"Add Course"} />
             </Link>
           </ListItem>
           {/* ))} */}
@@ -153,7 +173,10 @@ export default function SideBar({ Page, currentId, setCurrentId }) {
         <Divider />
         <List>
           <ListItem button key={"View Course"}>
-            <Link to={`/`}  style={{ color: "#343a40", textDecoration: "inherit" }}>
+            <Link
+              to={`/`}
+              style={{ color: "#343a40", textDecoration: "inherit" }}
+            >
               <ListItemIcon>
                 {" "}
                 <ViewListRoundedIcon />
@@ -180,6 +203,8 @@ export default function SideBar({ Page, currentId, setCurrentId }) {
               //   clsx(classes.page, {[classes.pageShift]: open,})
               open === true ? classes.pageShift : classes.page
             }
+            searchText={searchText}
+            setSearchText={setSearchText} 
           />
         </Typography>
       </main>

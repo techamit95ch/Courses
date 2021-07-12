@@ -22,6 +22,7 @@ const App = () => {
   const classes = useStyles();
 
   const [currentId, setCurrentId] = useState(null);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,30 +34,39 @@ const App = () => {
       <Grow in>
         <Container>
           {/* <Grid container justify="space-between" spacing={3}> */}
-            <Switch>
-              <Route exact path="/Add">
-                <SideBar
-                  Page={Form}
-                  currentId={currentId}
-                  setCurrentId={setCurrentId}
-                />
-              </Route>
-              <Route exact path="/">
-                <SideBar
-                  Page={Posts}
-                  currentId={currentId}
-                  setCurrentId={setCurrentId}
-                />
-              </Route>
-              <Route exact path="/Edit">
-                <SideBar
-                  Page={Form}
-                  currentId={currentId}
-                  setCurrentId={setCurrentId}
-                />
-              </Route>
-              <Route></Route>
-            </Switch>
+          <Switch>
+            <Route exact path="/Add">
+              <SideBar
+                Page={Form}
+                currentId={currentId}
+                setCurrentId={setCurrentId}
+                
+              />
+            </Route>
+            <Route exact path="/">
+              <SideBar
+                Page={Posts}
+                currentId={currentId}
+                setCurrentId={setCurrentId}
+              />
+            </Route>
+            <Route exact path="/search/:searchId">
+              <SideBar
+                Page={Posts}
+                currentId={currentId}
+                setCurrentId={setCurrentId}
+              />
+            </Route>
+            <Route exact path="/Edit">
+              <SideBar
+                Page={Form}
+                currentId={currentId}
+                setCurrentId={setCurrentId}
+               
+              />
+            </Route>
+            <Route></Route>
+          </Switch>
           {/* </Grid> */}
         </Container>
       </Grow>
