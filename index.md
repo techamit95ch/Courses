@@ -5,7 +5,7 @@ You can go to the (https://github.com/techamit95ch/Courses) to view contents for
 
 ### Links In Frontend
 
-There Are 3 impotant links in the project
+There are many impotant links in the project
 
 ```markdown
 Main Fetaures 
@@ -40,7 +40,8 @@ Other Impotant Featured Components with this project:
 [View All](/) For View All Course
 [Edit](/Edit) For Edit a Course wit Live View Changes
 [Search](/Search) For Search a Course
-
+[Like](/Like) For Like a Course
+[Delete](/Delete) For Delete a Course
 ```
 
 
