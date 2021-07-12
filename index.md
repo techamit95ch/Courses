@@ -28,7 +28,7 @@ Other Impotant Feature like
 1. View All course 
 2. View Indiual Course And Live Editing
 
-**Card View** and All Courses and `indesxed` Link
+**Card View** and All Courses and `indexed` Link
 **Single View** and Single Courses and `Edit` Link `here Indivial course details are shown. And They Can Be Edited`
 
 Other Impotant Featured Components with this project:
