@@ -21,7 +21,7 @@ import LibraryAddRoundedIcon from "@material-ui/icons/LibraryAddRounded";
 import ViewListRoundedIcon from "@material-ui/icons/ViewListRounded";
 import TopBar from "../topBar/TopBar";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom"; // version 5.2.0
+import { useHistory, useLocation } from "react-router-dom"; // version 5.2.0
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
   hide: {
     display: "none",
   },
+
   drawer: {
     width: drawerWidth,
     backgroundColor: "rgb(251, 251, 255)",
@@ -50,10 +51,10 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    [theme.breakpoints.up('sm')]: {
-        width: drawerWidth,
-        flexShrink: 0,
-      },
+    [theme.breakpoints.up("sm")]: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
   },
   drawerClose: {
     transition: theme.transitions.create("width", {
@@ -69,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   toolbar: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "flex-end",
+    justifyContent: "center",
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
@@ -78,7 +79,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
-  
 }));
 
 export default function SideBar({ Page, currentId, setCurrentId }) {
@@ -114,6 +114,9 @@ export default function SideBar({ Page, currentId, setCurrentId }) {
         }}
       >
         <div className={classes.toolbar}>
+          <Typography className={classes.title} variant="h6" noWrap>
+            Courses
+          </Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />
@@ -125,28 +128,31 @@ export default function SideBar({ Page, currentId, setCurrentId }) {
         <Divider />
         <List>
           {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => ( */}
-          <ListItem button key={"Add Course"}
-          onClick={()=>{
-            setCurrentId(0);
-            history.push(`\Add`);
-          }}
+          <ListItem
+            button
+            key={"Add Course"}
+            onClick={() => {
+              setCurrentId(null);
+              // history.push("/Add");
+              // location.replace('/Add');
+            }}
           >
             
-              {" "}
-              <ListItemIcon>
-                {" "}
-                <LibraryAddRoundedIcon />
-              </ListItemIcon>
-
-              <ListItemText primary={"Add Course"} />
+            <ListItemIcon>
+            <Link to={`/Add`}  style={{ color: "#343a40", textDecoration: "inherit" }}> <LibraryAddRoundedIcon /></Link>
+            </ListItemIcon>
             
+
+            <Link to={`/Add`}  style={{ color: "#343a40", textDecoration: "inherit" }}>
+            <ListItemText primary={"Add Course"} />
+            </Link>
           </ListItem>
           {/* ))} */}
         </List>
         <Divider />
         <List>
           <ListItem button key={"View Course"}>
-            <Link to={`/`}>
+            <Link to={`/`}  style={{ color: "#343a40", textDecoration: "inherit" }}>
               <ListItemIcon>
                 {" "}
                 <ViewListRoundedIcon />
@@ -165,10 +171,15 @@ export default function SideBar({ Page, currentId, setCurrentId }) {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Typography paragraph>
-          <Page currentId={currentId} setCurrentId={setCurrentId} open={open} className={
-            //   clsx(classes.page, {[classes.pageShift]: open,})
-            open===true? classes.pageShift: classes.page
-        } />
+          <Page
+            currentId={currentId}
+            setCurrentId={setCurrentId}
+            open={open}
+            className={
+              //   clsx(classes.page, {[classes.pageShift]: open,})
+              open === true ? classes.pageShift : classes.page
+            }
+          />
         </Typography>
       </main>
     </>

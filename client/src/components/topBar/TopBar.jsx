@@ -8,18 +8,32 @@ import { alpha, makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import clsx from "clsx";
+// Auto Compete And Search purpose
+import TextField from "@material-ui/core/TextField";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogActions from "@material-ui/core/DialogActions";
+import Button from "@material-ui/core/Button";
+import useAutocomplete from "@material-ui/lab/useAutocomplete";
+import Autocomplete, {
+  createFilterOptions,
+} from "@material-ui/lab/Autocomplete";
 
 const drawerWidth = 240;
+const filter = createFilterOptions();
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-   
   },
   appBar: {
     backgroundColor: "#24292e",
+    dispaly :"flex",
+    justifyContent: "space-between",
     // position: 'sticky',
-    color:"aliceblue",
+    color: "aliceblue",
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
@@ -27,8 +41,9 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   appBarShift: {
+    dispaly :"flex",
     backgroundColor: "#24292e",
-    color:"aliceblue",
+    color: "aliceblue",
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(["width", "margin"], {
@@ -51,6 +66,8 @@ const useStyles = makeStyles((theme) => ({
   },
   search: {
     position: "relative",
+    dispaly :"flex",
+    flexGrow:2,
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
     "&:hover": {
@@ -102,24 +119,50 @@ const useStyles = makeStyles((theme) => ({
 
 // export default topBar
 
-export default function TopBar({open, setOpen }) {
+export default function TopBar({ open, setOpen }) {
   const classes = useStyles();
-//   const [open, setOpen] = React.useState(false);
+  //   const [open, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const [value, setValue] = React.useState(null);
+  const [toggleOpen, setToggleOpen] = React.useState(false);
+
+  const handleClose = () => {
+    setDialogValue({
+      title: "",
+    });
+
+    setToggleOpen(false);
+  };
+
+  const [dialogValue, setDialogValue] = React.useState({
+    title: "",
+  });
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setValue({
+      title: dialogValue.title,
+    });
+
+    handleClose();
+  };
+
   return (
     <div className={classes.root}>
-      <AppBar className={
-        //   clsx(classes.appBar, {[classes.appBarShift]: open,})
-        open===true? classes.appBarShift: classes.appBar
-        }>
+      <AppBar
+        className={
+          //   clsx(classes.appBar, {[classes.appBarShift]: open,})
+          open === true ? classes.appBarShift : classes.appBar
+        }
+      >
         <Toolbar>
-        <IconButton
+          <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -131,10 +174,14 @@ export default function TopBar({open, setOpen }) {
             <MenuIcon />
           </IconButton>
 
+          {open === false ? (
+            <Typography className={classes.title} variant="h6" noWrap>
+              Courses
+            </Typography>
+          ) : (
+            ""
+          )}
 
-          <Typography className={classes.title} variant="h6" noWrap>
-            Courses
-          </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />

@@ -21,7 +21,7 @@ const App = () => {
 
   const classes = useStyles();
 
-  const [currentId, setCurrentId] = useState(0);
+  const [currentId, setCurrentId] = useState(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
